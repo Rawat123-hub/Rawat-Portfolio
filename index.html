@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Rawat | DevOps & Cloud Portfolio</title>
+    <title>Abhishek Rawat | Professional Portfolio</title>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* --- General Styling & Colors --- */
+        /* --- General Styling & Colors (Dark Theme) --- */
         :root {
-            --primary-color: #4A90E2; /* A strong, professional blue */
-            --secondary-color: #50E3C2; /* A vibrant accent teal/mint */
-            --background-color: #F4F7F6; /* A very light, clean gray */
-            --card-background: #FFFFFF;
-            --text-dark: #333333;
-            --text-light: #555555;
-            --header-text: #FFFFFF;
-            --shadow-color: rgba(0, 0, 0, 0.08);
+            --primary-color: #00A8FF; /* A vibrant, modern blue */
+            --secondary-color: #00E5B4; /* A bright teal/mint accent */
+            --background-color: #121212; /* Deep dark background */
+            --card-background: #1E1E1E; /* Slightly lighter card background */
+            --text-primary: #FFFFFF;
+            --text-secondary: #B3B3B3;
+            --shadow-color: rgba(0, 0, 0, 0.4);
         }
 
         body {
-            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
-            color: var(--text-dark);
+            color: var(--text-primary);
             line-height: 1.7;
             scroll-behavior: smooth;
         }
@@ -33,23 +36,20 @@
             padding: 20px;
         }
 
-        h1, h2, h3 {
-            font-weight: 600;
-        }
-
         h2 {
-            font-size: 2.5em;
-            color: var(--primary-color);
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--text-primary);
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             position: relative;
         }
 
         h2::after {
             content: '';
-            width: 80px;
+            width: 100px;
             height: 4px;
-            background: var(--secondary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             position: absolute;
             bottom: -15px;
             left: 50%;
@@ -58,318 +58,356 @@
         }
 
         /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--secondary-color); }
-        }
-
-        section {
-            padding: 60px 0;
+        .reveal {
             opacity: 0;
-            animation: fadeIn 1s forwards;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- Header Section --- */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color), #3a7ac8);
-            color: var(--header-text);
+            background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-primary);
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.5);
         }
 
         .hero h1 {
-            font-size: 3.5em;
+            font-size: 3.2em;
             margin: 0;
-            animation: fadeIn 1s;
         }
 
         .hero-subtitle {
-            font-size: 1.6em;
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            font-weight: 500;
             margin: 10px 0 25px;
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: .15em solid var(--secondary-color);
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
         }
 
         .social-links a {
-            color: var(--header-text);
+            color: var(--text-secondary);
             margin: 0 15px;
-            font-size: 1.2em;
-            transition: color 0.3s ease;
+            font-size: 1.8em;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-links a:hover {
-            color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: scale(1.2);
         }
-
-        /* --- Card Styling --- */
-        .card {
+        
+        /* --- Card & Project Styling --- */
+        .card, .project-card {
             background: var(--card-background);
+            border: 1px solid #2a2a2a;
             border-radius: 12px;
-            box-shadow: 0 5px 15px var(--shadow-color);
             padding: 30px;
             margin-bottom: 30px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow-color);
+        .card:hover, .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border-color: var(--primary-color);
         }
 
-        /* --- Experience Section --- */
-        .job-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-style: italic;
-            color: #6c757d;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .job-description li {
-            margin-bottom: 12px;
-        }
-
-        /* --- Projects Section --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
-
-        .project-card {
-            background: var(--card-background);
-            border-radius: 12px;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
         }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow-color);
-        }
-
-        .project-header {
-            background-color: var(--primary-color);
-            color: var(--header-text);
-            padding: 20px;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-
-        .project-body {
-            padding: 25px;
-            flex-grow: 1;
-        }
-
-        .project-body li {
-            margin-bottom: 10px;
-        }
-
+        
         .project-link {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 20px;
             font-weight: bold;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .project-link:hover {
             color: var(--primary-color);
         }
-        
         .tech-tag {
             display: inline-block;
-            background-color: #e9ecef;
-            color: var(--text-light);
-            padding: 4px 10px;
+            background-color: #333;
+            color: var(--text-secondary);
+            padding: 5px 12px;
             border-radius: 15px;
             font-size: 0.85em;
-            margin: 2px;
+            margin: 3px;
         }
-
-        /* --- Skills & Certs Section --- */
-        .grid-container {
+        
+        /* --- Skills Section --- */
+        .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .skill {
+            margin-bottom: 20px;
+        }
+        .skill p {
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+        .skill-bar {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            height: 15px;
+            overflow: hidden;
+        }
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0;
+            border-radius: 5px;
+            transition: width 1.5s ease-in-out;
         }
         
-        .grid-item h3 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 8px;
-        }
-        
-        .grid-item ul {
+        /* --- Certifications --- */
+        .cert-list {
             list-style: none;
             padding: 0;
         }
-
-        .grid-item li {
-            margin-bottom: 10px;
+        .cert-list li {
+            background: var(--card-background);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.2s ease;
         }
-
-        .cert-link {
+        .cert-list li:hover {
+            transform: translateX(5px);
+        }
+        .cert-list a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* --- Contact Section --- */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background-color: #2a2a2a;
+            color: var(--text-primary);
+            font-size: 1em;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            font-size: 1.2em;
             font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+        }
+        
         /* --- Footer --- */
         footer {
             text-align: center;
             padding: 30px;
-            background-color: var(--text-dark);
-            color: var(--background-color);
+            background-color: #1E1E1E;
             margin-top: 40px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2em; }
+            .hero h1 { font-size: 2.5em; }
+            .skills-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Hero Section -->
+    <!-- Header & Hero Section -->
     <header class="hero">
+        <img src="https://i.ibb.co/C0GrGzY/professional-pfp.jpg" alt="Abhishek Rawat" class="profile-pic">
         <h1>Abhishek Rawat</h1>
-        <p class="hero-subtitle">DevOps, Cloud & Machine Learning Portfolio</p>
-        <p>A recent Computer Science graduate with a passion for building scalable infrastructure, automating processes, and deriving insights from data.</p>
+        <p class="hero-subtitle">DevOps Engineer | Cloud & ML Enthusiast</p>
         <div class="social-links">
-            <a href="mailto:abhishekrawat359@gmail.com" target="_blank">Email</a> |
-            <a href="https://linkedin.com/in/abhishek-rawat-b41a65279" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/Rawat123-hub" target="_blank">GitHub</a>
+            <a href="mailto:abhishekrawat359@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/abhishek-rawat-b41a65279" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Rawat123-hub" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
     </header>
 
     <main class="container">
 
-        <!-- Experience Section -->
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="card">
-                <h3>Data Intern</h3>
-                <div class="job-details">
-                    <strong>Leverage Edu</strong>
-                    <span>May 2024 – Oct 2024</span>
+        <!-- Projects Section -->
+        <section id="projects" class="reveal">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>AWS Infrastructure with Terraform</h3>
+                    <p>Provisioned a highly available and scalable AWS infrastructure using Terraform (IaC), featuring reusable modules for VPC, EC2 with auto-scaling, RDS, and S3.</p>
+                    <div><span class="tech-tag">AWS</span> <span class="tech-tag">Terraform</span> <span class="tech-tag">IaC</span> <span class="tech-tag">VPC</span> <span class="tech-tag">EC2</span></div>
+                    <a href="https://github.com/Rawat123-hub/aws-terraform-infra" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <ul class="job-description">
-                    <li>Researched, extracted, and cleaned data from various sources using Python (BeautifulSoup, Pandas) to ensure high-quality datasets for analysis.</li>
-                    <li>Assisted in querying databases with SQL and created reports to support data-driven decision-making.</li>
-                    <li>Contributed to creating dashboards and visualizations to highlight key trends and business insights.</li>
-                    <li>Provided timely updates to stakeholders and suggested improvements for data handling processes.</li>
+                <div class="project-card">
+                    <h3>Self-Healing Kubernetes Cluster</h3>
+                    <p>Deployed a containerized app to Kubernetes with liveness/readiness probes and Horizontal Pod Autoscaler. Demonstrated auto-scaling and self-healing under a K6 load test.</p>
+                    <div><span class="tech-tag">Kubernetes</span> <span class="tech-tag">HPA</span> <span class="tech-tag">Docker</span> <span class="tech-tag">K6</span> <span class="tech-tag">YAML</span></div>
+                    <a href="https://github.com/Rawat123-hub/k8s-self-healing-cluster" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="project-card">
+                    <h3>Automated CI/CD Pipeline</h3>
+                    <p>Built a CI/CD pipeline with Jenkins that automatically builds a Docker image for a Node.js app on GitHub commits and deploys it to AWS EC2, cutting deployment time by 70%.</p>
+                    <div><span class="tech-tag">Jenkins</span> <span class="tech-tag">CI/CD</span> <span class="tech-tag">Docker</span> <span class="tech-tag">AWS</span></div>
+                    <a href="https://github.com/Rawat123-hub/jenkins-cicd-pipeline" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="project-card">
+                    <h3>Car Price Predictor Model</h3>
+                    <p>Developed a machine learning model to predict used car prices. Handled extensive data cleaning and preprocessing to achieve an R² score of 92% with a Linear Regression pipeline.</p>
+                    <div><span class="tech-tag">Python</span> <span class="tech-tag">Scikit-learn</span> <span class="tech-tag">Pandas</span> <span class="tech-tag">ML</span></div>
+                    <a href="https://github.com/Rawat123-hub/car-price-predictor" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="reveal">
+            <h2>Technical Skills</h2>
+            <div class="skills-container card">
+                <div class="skills-column">
+                    <div class="skill"><p>Python, Bash & Shell Scripting</p><div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div></div>
+                    <div class="skill"><p>Docker & Kubernetes</p><div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div></div>
+                    <div class="skill"><p>Jenkins & CI/CD Pipelines</p><div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div></div>
+                </div>
+                <div class="skills-column">
+                    <div class="skill"><p>AWS & Azure Cloud Platforms</p><div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div></div>
+                    <div class="skill"><p>Terraform (Infrastructure as Code)</p><div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div></div>
+                    <div class="skill"><p>SQL & MySQL</p><div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="reveal">
+            <h2>Certifications & Education</h2>
+             <div class="card">
+                <h3>B-Tech in Computer Science</h3>
+                <p style="color: var(--text-secondary);">Meerut Institute of Engineering and Technology (2020 - 2024)</p>
+                <hr style="border-color: #333; margin: 20px 0;">
+                <ul class="cert-list">
+                    <li><a href="https://www.credly.com/badges/aws-cloud-quest-cloud-practitioner" target="_blank"><i class="fab fa-aws"></i> AWS Cloud Quest: Cloud Practitioner</a></li>
+                    <li><a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/" target="_blank"><i class="fab fa-microsoft"></i> Microsoft Certified: Azure Fundamentals (AZ-900)</a></li>
+                    <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/example" target="_blank"><i class="fab fa-ibm"></i> IBM: Journey to Cloud - Envisioning Your Solution</a></li>
                 </ul>
             </div>
         </section>
-
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-header">AWS Cloud Infrastructure with Terraform</div>
-                    <div class="project-body">
-                        <p>Provisioned a highly available and scalable AWS infrastructure using Terraform (IaC). Wrote reusable modules to manage VPC, subnets, EC2 instances with auto-scaling, RDS, and S3.</p>
-                        <div>
-                            <span class="tech-tag">AWS</span> <span class="tech-tag">Terraform</span> <span class="tech-tag">EC2</span> <span class="tech-tag">VPC</span> <span class="tech-tag">RDS</span> <span class="tech-tag">S3</span> <span class="tech-tag">IAM</span>
-                        </div>
-                        <a href="#" class="project-link">View Project on GitHub</a>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-header">Self-Healing Kubernetes Cluster</div>
-                    <div class="project-body">
-                        <p>Deployed a containerized application to a Kubernetes cluster and configured liveness/readiness probes. Implemented Horizontal Pod Autoscaler (HPA) and used K6 for load testing to demonstrate self-healing and auto-scaling.</p>
-                        <div>
-                            <span class="tech-tag">Kubernetes</span> <span class="tech-tag">HPA</span> <span class="tech-tag">K6</span> <span class="tech-tag">YAML</span> <span class="tech-tag">Docker</span>
-                        </div>
-                        <a href="#" class="project-link">View Project on GitHub</a>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">Jenkins CI/CD Pipeline</div>
-                    <div class="project-body">
-                        <p>Developed a fully automated CI/CD pipeline that builds a Node.js application using Docker upon a GitHub commit and deploys it to a live AWS EC2 instance. Reduced deployment time by 70%.</p>
-                        <div>
-                            <span class="tech-tag">Jenkins</span> <span class="tech-tag">Docker</span> <span class="tech-tag">AWS EC2</span> <span class="tech-tag">GitHub</span> <span class="tech-tag">Node.js</span>
-                        </div>
-                        <a href="#" class="project-link">View Project on GitHub</a>
-                    </div>
-                </div>
-                 <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-header">Car Price Predictor Model</div>
-                    <div class="project-body">
-                        <p>Developed a machine learning model to predict used car prices. Handled extensive data cleaning, preprocessing, and feature engineering. Achieved an R² score of 92% using a Linear Regression pipeline.</p>
-                        <div>
-                            <span class="tech-tag">Python</span> <span class="tech-tag">Scikit-learn</span> <span class="tech-tag">Pandas</span> <span class="tech-tag">Linear Regression</span>
-                        </div>
-                        <a href="#" class="project-link">View Project on GitHub</a>
-                    </div>
-                </div>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="reveal">
+            <h2>Get In Touch</h2>
+            <div class="card">
+                <p style="text-align:center; color: var(--text-secondary);">Have a question or want to work together? Feel free to reach out!</p>
+                <form class="contact-form" action="mailto:abhishekrawat359@gmail.com" method="post" enctype="text/plain">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
         </section>
 
-        <!-- Skills & Certifications Section -->
-        <section id="skills-certs">
-            <h2>Skills & Certifications</h2>
-            <div class="grid-container">
-                <div class="card grid-item">
-                    <h3>Technical Skills</h3>
-                    <ul>
-                        <li><b>Programming:</b> Python, Shell Scripting, Bash, SQL, OOPs</li>
-                        <li><b>DevOps:</b> Docker, Kubernetes, Jenkins, Terraform, Git/GitHub</li>
-                        <li><b>Cloud:</b> AWS, Azure</li>
-                        <li><b>Database:</b> MySQL</li>
-                        <li><b>Machine Learning:</b> Scikit-learn, Pandas, NumPy</li>
-                    </ul>
-                </div>
-                <div class="card grid-item">
-                    <h3>Certifications</h3>
-                    <ul>
-                        <li><a href="#" class="cert-link">AWS Cloud Quest: Cloud Practitioner</a></li>
-                        <li><a href="#" class="cert-link">Microsoft Certified: Azure Fundamentals (AZ-900)</a></li>
-                        <li><a href="#" class="cert-link">IBM: Journey to Cloud - Envisioning Your Solution</a></li>
-                    </ul>
-                     <h3>Education</h3>
-                    <ul>
-                        <li><b>B-Tech in Computer Science</b><br>Meerut Institute of Engineering and Technology<br><i>(April 2020 - July 2024)</i></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
-        <p>© 2024 Abhishek Rawat. Designed with care.</p>
+        <p>© 2024 Abhishek Rawat. All rights reserved.</p>
     </footer>
 
     <script>
-        // Intersection Observer for fade-in animations
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver(entries => {
+        // Intersection Observer for reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        const skillLevels = document.querySelectorAll('.skill-level');
+
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeIn 1s forwards';
+                    entry.target.classList.add('visible');
+                    
+                    // Animate skill bars when the skills section is visible
+                    if (entry.target.id === 'skills') {
+                        skillLevels.forEach(skill => {
+                            skill.style.width = skill.parentElement.parentElement.querySelector('p').nextElementSibling.querySelector('.skill-level').style.width;
+                        });
+                    }
                 }
             });
         }, { threshold: 0.1 });
 
-        sections.forEach(section => {
-            section.style.opacity = '0'; // Hide sections initially
-            observer.observe(section);
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
         });
+
+        // Separate observer for skill bars to trigger animation correctly
+        const skillsSection = document.getElementById('skills');
+        const skillObserver = new IntersectionObserver((entries) => {
+             if (entries[0].isIntersecting) {
+                skillLevels.forEach(skill => {
+                    const level = skill.style.width; // Store the target width from the style attribute
+                    // We need to trigger the reflow to restart the animation if it was already set
+                    requestAnimationFrame(() => {
+                        skill.style.width = level;
+                    });
+                });
+             }
+        }, { threshold: 0.5 });
+        
+        if (skillsSection) {
+            skillObserver.observe(skillsSection);
+        }
+
     </script>
 </body>
 </html>
