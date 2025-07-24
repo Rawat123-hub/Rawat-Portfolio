@@ -3,220 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Rawat | Portfolio</title>
+    <title>Abhishek Rawat | DevOps & Cloud Portfolio</title>
     <style>
-        /* General Styling */
+        /* --- General Styling & Colors --- */
+        :root {
+            --primary-color: #4A90E2; /* A strong, professional blue */
+            --secondary-color: #50E3C2; /* A vibrant accent teal/mint */
+            --background-color: #F4F7F6; /* A very light, clean gray */
+            --card-background: #FFFFFF;
+            --text-dark: #333333;
+            --text-light: #555555;
+            --header-text: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #343a40;
-            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.7;
             scroll-behavior: smooth;
         }
+
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
         }
+
         h1, h2, h3 {
             font-weight: 600;
-            color: #212529;
         }
-        h1 {
-            font-size: 2.8em;
-            text-align: center;
-            margin-bottom: 10px;
-        }
+
         h2 {
-            font-size: 2.2em;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-            margin-top: 50px;
-        }
-        h3 {
-            font-size: 1.4em;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background: #ffffff;
-            padding: 20px 0;
+            font-size: 2.5em;
+            color: var(--primary-color);
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        nav a {
-            margin: 0 15px;
-            font-weight: 500;
-            font-size: 1.1em;
-            color: #343a40;
+            margin-bottom: 50px;
+            position: relative;
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: #ffffff;
-        }
-        .hero-subtitle {
-            font-size: 1.5em;
-            color: #6c757d;
-            margin-bottom: 20px;
-        }
-        .social-links a {
-            margin: 0 10px;
-            font-weight: 500;
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
-        /* Section Styling */
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--secondary-color); }
+        }
+
         section {
-            padding: 40px 0;
+            padding: 60px 0;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
+
+        /* --- Header Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #3a7ac8);
+            color: var(--header-text);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin: 0;
+            animation: fadeIn 1s;
+        }
+
+        .hero-subtitle {
+            font-size: 1.6em;
+            margin: 10px 0 25px;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid var(--secondary-color);
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        .social-links a {
+            color: var(--header-text);
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Card Styling --- */
         .card {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 25px;
-            margin-bottom: 25px;
+            background: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        /* Experience Section */
-        .job-title {
-            font-weight: bold;
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow-color);
         }
+
+        /* --- Experience Section --- */
         .job-details {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-style: italic;
             color: #6c757d;
             margin-bottom: 15px;
-        }
-        .job-description li {
-            margin-bottom: 10px;
+            flex-wrap: wrap;
         }
         
-        /* Projects Section */
-        .project {
-            cursor: pointer;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            transition: box-shadow 0.3s ease;
+        .job-description li {
+            margin-bottom: 12px;
         }
-        .project:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
+
+        .project-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
         .project-header {
-            background: #ffffff;
+            background-color: var(--primary-color);
+            color: var(--header-text);
             padding: 20px;
-            border-radius: 8px;
             font-size: 1.3em;
-            font-weight: 600;
+            font-weight: bold;
         }
-        .project-header:after {
-            content: '\\25BC';
-            float: right;
-            transition: transform 0.3s ease;
-        }
-        .project.active .project-header:after {
-            transform: rotate(180deg);
-        }
+
         .project-body {
-            display: none;
-            padding: 20px;
-            background: #ffffff;
-            border-top: 1px solid #e9ecef;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
+            padding: 25px;
+            flex-grow: 1;
         }
-        .project-body p {
-            margin-bottom: 15px;
-        }
-        .project-body ul {
-            padding-left: 20px;
-        }
+
         .project-body li {
             margin-bottom: 10px;
         }
-        .tech-used {
-            font-family: 'Courier New', Courier, monospace;
+
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .tech-tag {
+            display: inline-block;
             background-color: #e9ecef;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.9em;
+            color: var(--text-light);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 2px;
         }
 
-        /* Skills Section */
-        .skills-grid {
+        /* --- Skills & Certs Section --- */
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-        .skill-category ul {
-            list-style-type: none;
+        
+        .grid-item h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+        }
+        
+        .grid-item ul {
+            list-style: none;
             padding: 0;
         }
-        .skill-category li {
-            background-color: #e9ecef;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 8px;
-        }
-        
-        /* Education & Certs Section */
-        .education-item, .cert-item {
-            margin-bottom: 15px;
-        }
-        .cert-item a {
-            font-weight: bold;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #343a40;
-            color: #ffffff;
-            margin-top: 40px;
+
+        .grid-item li {
+            margin-bottom: 10px;
         }
 
+        .cert-link {
+            font-weight: bold;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--text-dark);
+            color: var(--background-color);
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#education">Education</a>
-        </nav>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Abhishek Rawat</h1>
+        <p class="hero-subtitle">DevOps, Cloud & Machine Learning Portfolio</p>
+        <p>A recent Computer Science graduate with a passion for building scalable infrastructure, automating processes, and deriving insights from data.</p>
+        <div class="social-links">
+            <a href="mailto:abhishekrawat359@gmail.com" target="_blank">Email</a> |
+            <a href="https://linkedin.com/in/abhishek-rawat-b41a65279" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/Rawat123-hub" target="_blank">GitHub</a>
+        </div>
     </header>
 
-    <div class="container">
-
-        <!-- Hero Section -->
-        <section id="about" class="hero">
-            <h1>Abhishek Rawat</h1>
-            <p class="hero-subtitle">Data Analyst | Cloud & Machine Learning Enthusiast</p>
-            <p>Hello! I'm Abhishek, a recent Computer Science graduate with a passion for uncovering stories within data and automating complex processes. I thrive on using technology to solve real-world problems and am eager to contribute my skills to a forward-thinking team.</p>
-            <div class="social-links">
-                <a href="mailto:abhishekrawat359@gmail.com">Email</a> |
-                <a href="https://linkedin.com/in/abhishek-rawat-b41a65279" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/Rawat123-hub" target="_blank">GitHub</a>
-            </div>
-        </section>
+    <main class="container">
 
         <!-- Experience Section -->
         <section id="experience">
@@ -224,14 +258,14 @@
             <div class="card">
                 <h3>Data Intern</h3>
                 <div class="job-details">
-                    <span>Leverage Edu</span>
+                    <strong>Leverage Edu</strong>
                     <span>May 2024 – Oct 2024</span>
                 </div>
                 <ul class="job-description">
-                    <li><strong>Data Collection & Cleaning:</strong> Utilized Python libraries like BeautifulSoup and Pandas to research, extract, and clean data from various sources, ensuring the delivery of high-quality datasets.</li>
-                    <li><strong>SQL & Reporting:</strong> Wrote and executed SQL queries to retrieve relevant data from databases, creating insightful reports to support key business decisions.</li>
-                    <li><strong>Dashboard & Visualization:</strong> Contributed to the design and creation of dynamic dashboards that effectively visualized trends and performance indicators.</li>
-                    <li><strong>Process Improvement:</strong> Proactively identified and suggested improvements to standard operating procedures (SOPs) for data handling, enhancing efficiency and consistency.</li>
+                    <li>Researched, extracted, and cleaned data from various sources using Python (BeautifulSoup, Pandas) to ensure high-quality datasets for analysis.</li>
+                    <li>Assisted in querying databases with SQL and created reports to support data-driven decision-making.</li>
+                    <li>Contributed to creating dashboards and visualizations to highlight key trends and business insights.</li>
+                    <li>Provided timely updates to stakeholders and suggested improvements for data handling processes.</li>
                 </ul>
             </div>
         </section>
@@ -239,150 +273,103 @@
         <!-- Projects Section -->
         <section id="projects">
             <h2>Projects</h2>
-            
-            <div class="project">
-                <div class="project-header">🤖 Jenkins CI/CD Pipeline for Automated Deployment</div>
-                <div class="project-body">
-                    <p>Developed and deployed a fully automated CI/CD pipeline for a Node.js application. The pipeline integrates with GitHub to automatically trigger new builds, which are then containerized using Docker and deployed to a live AWS EC2 instance.</p>
-                    <ul>
-                        <li><b>Key Achievement:</b> Successfully reduced application deployment time by <b>70%</b> through full automation.</li>
-                        <li><b>Technologies Used:</b> <span class="tech-used">Jenkins</span>, <span class="tech-used">Docker</span>, <span class="tech-used">AWS EC2</span>, <span class="tech-used">GitHub</span>, <span class="tech-used">Node.js</span></li>
-                        <li><a href="https://github.com/Rawat123-hub" target="_blank">View on GitHub</a></li>
-                    </ul>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">AWS Cloud Infrastructure with Terraform</div>
+                    <div class="project-body">
+                        <p>Provisioned a highly available and scalable AWS infrastructure using Terraform (IaC). Wrote reusable modules to manage VPC, subnets, EC2 instances with auto-scaling, RDS, and S3.</p>
+                        <div>
+                            <span class="tech-tag">AWS</span> <span class="tech-tag">Terraform</span> <span class="tech-tag">EC2</span> <span class="tech-tag">VPC</span> <span class="tech-tag">RDS</span> <span class="tech-tag">S3</span> <span class="tech-tag">IAM</span>
+                        </div>
+                        <a href="#" class="project-link">View Project on GitHub</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="project">
-                <div class="project-header">🚗 Car Price Predictor Model</div>
-                <div class="project-body">
-                    <p>Built a machine learning model to accurately predict the price of used cars. This project involved extensive data cleaning and preprocessing of a large dataset to handle inconsistencies and feature engineering to identify key price drivers.</p>
-                    <ul>
-                        <li><b>Key Achievement:</b> Achieved an <b>R² score of 92%</b>, demonstrating high model accuracy.</li>
-                        <li><b>Technologies Used:</b> <span class="tech-used">Python</span>, <span class="tech-used">Scikit-learn</span>, <span class="tech-used">Pandas</span>, <span class="tech-used">Linear Regression</span></li>
-                        <li><a href="https://github.com/Rawat123-hub" target="_blank">View on GitHub</a></li>
-                    </ul>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">Self-Healing Kubernetes Cluster</div>
+                    <div class="project-body">
+                        <p>Deployed a containerized application to a Kubernetes cluster and configured liveness/readiness probes. Implemented Horizontal Pod Autoscaler (HPA) and used K6 for load testing to demonstrate self-healing and auto-scaling.</p>
+                        <div>
+                            <span class="tech-tag">Kubernetes</span> <span class="tech-tag">HPA</span> <span class="tech-tag">K6</span> <span class="tech-tag">YAML</span> <span class="tech-tag">Docker</span>
+                        </div>
+                        <a href="#" class="project-link">View Project on GitHub</a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="project">
-                <div class="project-header">📊 Data Analysis of Amazon Sales</div>
-                <div class="project-body">
-                    <p>Conducted a comprehensive analysis of Amazon sales data. The project involved cleaning, manipulating, and visualizing data with Python to identify high-demand products and regional sales trends.</p>
-                    <ul>
-                        <li><b>Key Finding:</b> Calculated total generated revenue of ₹7.6 Crore and identified Maharashtra as the top-performing state, contributing 17.02% of total sales.</li>
-                        <li><b>Technologies Used:</b> <span class="tech-used">Python</span>, <span class="tech-used">Pandas</span>, <span class="tech-used">Matplotlib</span>, <span class="tech-used">Seaborn</span></li>
-                        <li><a href="https://github.com/Rawat123-hub" target="_blank">View on GitHub</a></li>
-                    </ul>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">Jenkins CI/CD Pipeline</div>
+                    <div class="project-body">
+                        <p>Developed a fully automated CI/CD pipeline that builds a Node.js application using Docker upon a GitHub commit and deploys it to a live AWS EC2 instance. Reduced deployment time by 70%.</p>
+                        <div>
+                            <span class="tech-tag">Jenkins</span> <span class="tech-tag">Docker</span> <span class="tech-tag">AWS EC2</span> <span class="tech-tag">GitHub</span> <span class="tech-tag">Node.js</span>
+                        </div>
+                        <a href="#" class="project-link">View Project on GitHub</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="project">
-                <div class="project-header">🍕 Pizza Sales SQL Project</div>
-                <div class="project-body">
-                    <p>Executed complex SQL queries to perform an in-depth analysis of pizza sales data. The goal was to manage and query data from multiple sources to identify order patterns, revenue drivers, and customer behavior.</p>
-                    <ul>
-                        <li><b>Key Achievement:</b> Emphasized and ensured high accuracy in data extraction and processing to align with business metrics.</li>
-                        <li><b>Technologies Used:</b> <span class="tech-used">SQL</span>, <span class="tech-used">Database Management</span></li>
-                        <li><a href="https://github.com/Rawat123-hub" target="_blank">View on GitHub</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category card">
-                    <h3>Programming & Databases</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>Shell Scripting</li>
-                        <li>SQL</li>
-                        <li>OOPs</li>
-                        <li>MySQL</li>
-                    </ul>
-                </div>
-                <div class="skill-category card">
-                    <h3>Tools & Platforms</h3>
-                    <ul>
-                        <li>Docker & Kubernetes</li>
-                        <li>Jenkins CI/CD Pipeline</li>
-                        <li>Azure & AWS</li>
-                        <li>Git & VS Code</li>
-                    </ul>
-                </div>
-                <div class="skill-category card">
-                    <h3>Machine Learning</h3>
-                    <ul>
-                        <li>Scikit-learn</li>
-                        <li>Linear Regression</li>
-                        <li>Pandas & NumPy</li>
-                        <li>Data Preprocessing</li>
-                    </ul>
-                </div>
-                 <div class="skill-category card">
-                    <h3>Soft Skills</h3>
-                    <ul>
-                        <li>Analytical Critical Thinking</li>
-                        <li>Communication & Collaboration</li>
-                        <li>Problem-Solving</li>
-                        <li>Time Management</li>
-                    </ul>
+                 <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-header">Car Price Predictor Model</div>
+                    <div class="project-body">
+                        <p>Developed a machine learning model to predict used car prices. Handled extensive data cleaning, preprocessing, and feature engineering. Achieved an R² score of 92% using a Linear Regression pipeline.</p>
+                        <div>
+                            <span class="tech-tag">Python</span> <span class="tech-tag">Scikit-learn</span> <span class="tech-tag">Pandas</span> <span class="tech-tag">Linear Regression</span>
+                        </div>
+                        <a href="#" class="project-link">View Project on GitHub</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Education & Certifications Section -->
-        <section id="education">
-            <h2>Education & Certifications</h2>
-            <div class="card">
-                <div class="education-item">
-                    <h3>B-Tech in Computer Science</h3>
-                    <p>Meerut Institute of Engineering and Technology</p>
-                    <p><i>Graduated July 2024</i></p>
+        <!-- Skills & Certifications Section -->
+        <section id="skills-certs">
+            <h2>Skills & Certifications</h2>
+            <div class="grid-container">
+                <div class="card grid-item">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li><b>Programming:</b> Python, Shell Scripting, Bash, SQL, OOPs</li>
+                        <li><b>DevOps:</b> Docker, Kubernetes, Jenkins, Terraform, Git/GitHub</li>
+                        <li><b>Cloud:</b> AWS, Azure</li>
+                        <li><b>Database:</b> MySQL</li>
+                        <li><b>Machine Learning:</b> Scikit-learn, Pandas, NumPy</li>
+                    </ul>
                 </div>
-                <hr>
-                <div class="cert-item">
+                <div class="card grid-item">
                     <h3>Certifications</h3>
-                    <p><a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/" target="_blank">Microsoft Certified: Azure Fundamentals (AZ-900)</a></p>
-                    <p><a href="https://learn.microsoft.com/en-us/credentials/certifications/power-platform-fundamentals/" target="_blank">Microsoft Certified: Power Platform Fundamentals (PL-900)</a></p>
+                    <ul>
+                        <li><a href="#" class="cert-link">AWS Cloud Quest: Cloud Practitioner</a></li>
+                        <li><a href="#" class="cert-link">Microsoft Certified: Azure Fundamentals (AZ-900)</a></li>
+                        <li><a href="#" class="cert-link">IBM: Journey to Cloud - Envisioning Your Solution</a></li>
+                    </ul>
+                     <h3>Education</h3>
+                    <ul>
+                        <li><b>B-Tech in Computer Science</b><br>Meerut Institute of Engineering and Technology<br><i>(April 2020 - July 2024)</i></li>
+                    </ul>
                 </div>
             </div>
         </section>
-
-    </div>
+    </main>
 
     <footer>
-        <p>© 2024 Abhishek Rawat</p>
+        <p>© 2024 Abhishek Rawat. Designed with care.</p>
     </footer>
 
     <script>
-        // JavaScript for interactive projects section
-        document.addEventListener('DOMContentLoaded', function () {
-            const projects = document.querySelectorAll('.project');
-            projects.forEach(project => {
-                const header = project.querySelector('.project-header');
-                header.addEventListener('click', () => {
-                    const body = project.querySelector('.project-body');
-                    const isActive = project.classList.contains('active');
-                    
-                    // Close all other projects
-                    projects.forEach(p => {
-                        p.classList.remove('active');
-                        p.querySelector('.project-body').style.display = 'none';
-                    });
-                    
-                    // Toggle the clicked project
-                    if (!isActive) {
-                        project.classList.add('active');
-                        body.style.display = 'block';
-                    }
-                });
+        // Intersection Observer for fade-in animations
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 1s forwards';
+                }
             });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = '0'; // Hide sections initially
+            observer.observe(section);
         });
     </script>
-
 </body>
 </html>
