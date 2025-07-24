@@ -70,34 +70,25 @@
 
         /* --- Header Section --- */
         .hero {
-            background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
             background-size: cover;
             background-position: center;
             color: var(--text-primary);
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 4px solid var(--primary-color);
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(0, 168, 255, 0.5);
-        }
 
         .hero h1 {
-            font-size: 3.2em;
+            font-size: 3.5em;
             margin: 0;
+            font-weight: 700;
         }
 
         .hero-subtitle {
-            font-size: 1.5em;
+            font-size: 1.6em;
             color: var(--secondary-color);
             font-weight: 500;
             margin: 10px 0 25px;
@@ -116,16 +107,15 @@
         }
         
         /* --- Card & Project Styling --- */
-        .card, .project-card {
+        .card, .project-card, .skill-category {
             background: var(--card-background);
             border: 1px solid #2a2a2a;
             border-radius: 12px;
             padding: 30px;
-            margin-bottom: 30px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover, .project-card:hover {
+        .card:hover, .project-card:hover, .skill-category:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px var(--shadow-color);
             border-color: var(--primary-color);
@@ -163,32 +153,30 @@
             margin: 3px;
         }
         
-        /* --- Skills Section --- */
-        .skills-container {
+        /* --- New Skills Section --- */
+        .skills-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
-        .skill {
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-top: 0;
             margin-bottom: 20px;
+            font-size: 1.4em;
         }
-        .skill p {
-            margin: 0 0 8px 0;
-            font-weight: 600;
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
-        .skill-bar {
-            width: 100%;
+        .skills-list span {
             background-color: #333;
-            border-radius: 5px;
-            height: 15px;
-            overflow: hidden;
-        }
-        .skill-level {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 0;
-            border-radius: 5px;
-            transition: width 1.5s ease-in-out;
+            color: var(--text-secondary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.95em;
         }
         
         /* --- Certifications --- */
@@ -197,15 +185,16 @@
             padding: 0;
         }
         .cert-list li {
-            background: var(--card-background);
+            background: #2a2a2a;
             padding: 15px 20px;
             border-radius: 8px;
             margin-bottom: 15px;
             border-left: 4px solid var(--secondary-color);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
         .cert-list li:hover {
             transform: translateX(5px);
+            background-color: #333;
         }
         .cert-list a {
             color: var(--text-primary);
@@ -221,6 +210,7 @@
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 15px;
+            box-sizing: border-box;
             margin-bottom: 20px;
             border-radius: 8px;
             border: 1px solid #333;
@@ -261,9 +251,8 @@
 
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            h2 { font-size: 2em; }
-            .hero h1 { font-size: 2.5em; }
-            .skills-container { grid-template-columns: 1fr; }
+            h2 { font-size: 2.2em; }
+            .hero h1 { font-size: 2.8em; }
         }
     </style>
 </head>
@@ -271,9 +260,8 @@
 
     <!-- Header & Hero Section -->
     <header class="hero">
-        <img src="https://i.ibb.co/C0GrGzY/professional-pfp.jpg" alt="Abhishek Rawat" class="profile-pic">
         <h1>Abhishek Rawat</h1>
-        <p class="hero-subtitle">DevOps Engineer | Cloud & ML Enthusiast</p>
+        <p class="hero-subtitle">DevOps Engineer | Cloud & Networking Enthusiast</p>
         <div class="social-links">
             <a href="mailto:abhishekrawat359@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
             <a href="https://linkedin.com/in/abhishek-rawat-b41a65279" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -291,25 +279,25 @@
                     <h3>AWS Infrastructure with Terraform</h3>
                     <p>Provisioned a highly available and scalable AWS infrastructure using Terraform (IaC), featuring reusable modules for VPC, EC2 with auto-scaling, RDS, and S3.</p>
                     <div><span class="tech-tag">AWS</span> <span class="tech-tag">Terraform</span> <span class="tech-tag">IaC</span> <span class="tech-tag">VPC</span> <span class="tech-tag">EC2</span></div>
-                    <a href="https://github.com/Rawat123-hub/aws-terraform-infra" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://github.com/Rawat123-hub/AWS-Cloud-Infrastructure-Setup-with-Terraform.git" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="project-card">
                     <h3>Self-Healing Kubernetes Cluster</h3>
                     <p>Deployed a containerized app to Kubernetes with liveness/readiness probes and Horizontal Pod Autoscaler. Demonstrated auto-scaling and self-healing under a K6 load test.</p>
                     <div><span class="tech-tag">Kubernetes</span> <span class="tech-tag">HPA</span> <span class="tech-tag">Docker</span> <span class="tech-tag">K6</span> <span class="tech-tag">YAML</span></div>
-                    <a href="https://github.com/Rawat123-hub/k8s-self-healing-cluster" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://github.com/Rawat123-hub/Self-Healing-Kubernetes-Cluster-with-HPA.git" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="project-card">
                     <h3>Automated CI/CD Pipeline</h3>
                     <p>Built a CI/CD pipeline with Jenkins that automatically builds a Docker image for a Node.js app on GitHub commits and deploys it to AWS EC2, cutting deployment time by 70%.</p>
                     <div><span class="tech-tag">Jenkins</span> <span class="tech-tag">CI/CD</span> <span class="tech-tag">Docker</span> <span class="tech-tag">AWS</span></div>
-                    <a href="https://github.com/Rawat123-hub/jenkins-cicd-pipeline" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://github.com/Rawat123-hub" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="project-card">
                     <h3>Car Price Predictor Model</h3>
                     <p>Developed a machine learning model to predict used car prices. Handled extensive data cleaning and preprocessing to achieve an R² score of 92% with a Linear Regression pipeline.</p>
                     <div><span class="tech-tag">Python</span> <span class="tech-tag">Scikit-learn</span> <span class="tech-tag">Pandas</span> <span class="tech-tag">ML</span></div>
-                    <a href="https://github.com/Rawat123-hub/car-price-predictor" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://github.com/Rawat123-hub/Car-Price-predictor-project.git" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
@@ -317,16 +305,30 @@
         <!-- Skills Section -->
         <section id="skills" class="reveal">
             <h2>Technical Skills</h2>
-            <div class="skills-container card">
-                <div class="skills-column">
-                    <div class="skill"><p>Python, Bash & Shell Scripting</p><div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div></div>
-                    <div class="skill"><p>Docker & Kubernetes</p><div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div></div>
-                    <div class="skill"><p>Jenkins & CI/CD Pipelines</p><div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div></div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages & Databases</h3>
+                    <div class="skills-list">
+                        <span>Python</span><span>Bash</span><span>Shell Scripting</span><span>SQL</span><span>MySQL</span>
+                    </div>
                 </div>
-                <div class="skills-column">
-                    <div class="skill"><p>AWS & Azure Cloud Platforms</p><div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div></div>
-                    <div class="skill"><p>Terraform (Infrastructure as Code)</p><div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div></div>
-                    <div class="skill"><p>SQL & MySQL</p><div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div></div>
+                <div class="skill-category">
+                    <h3>DevOps & CI/CD</h3>
+                    <div class="skills-list">
+                        <span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>Terraform</span><span>Git/GitHub</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud & Platforms</h3>
+                    <div class="skills-list">
+                        <span>AWS</span><span>Azure</span><span>Linux</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <div class="skills-list">
+                        <span>Scikit-learn</span><span>Pandas</span><span>NumPy</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -339,9 +341,9 @@
                 <p style="color: var(--text-secondary);">Meerut Institute of Engineering and Technology (2020 - 2024)</p>
                 <hr style="border-color: #333; margin: 20px 0;">
                 <ul class="cert-list">
-                    <li><a href="https://www.credly.com/badges/aws-cloud-quest-cloud-practitioner" target="_blank"><i class="fab fa-aws"></i> AWS Cloud Quest: Cloud Practitioner</a></li>
-                    <li><a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/" target="_blank"><i class="fab fa-microsoft"></i> Microsoft Certified: Azure Fundamentals (AZ-900)</a></li>
-                    <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/example" target="_blank"><i class="fab fa-ibm"></i> IBM: Journey to Cloud - Envisioning Your Solution</a></li>
+                    <li><a href="https://www.credly.com/badges/44ae5109-2e51-42c1-8f27-48355d68869c/public_url" target="_blank"><i class="fab fa-aws"></i> AWS Cloud Quest: Cloud Practitioner</a></li>
+                    <li><a href="https://www.credly.com/badges/4ac39bcb-7e0c-41c4-bf4d-d3f0051f8da5/public_url" target="_blank"><i class="fab fa-microsoft"></i> Microsoft Certified: Azure Fundamentals (AZ-900)</a></li>
+                    <li><a href="https://www.credly.com/badges/890b2a45-176b-4fef-bee5-6990cd4d8d5e/linked_in_profile" target="_blank"><i class="fab fa-ibm"></i> IBM: Journey to Cloud - Envisioning Your Solution</a></li>
                 </ul>
             </div>
         </section>
@@ -363,25 +365,17 @@
     </main>
 
     <footer>
-        <p>© 2024 Abhishek Rawat. All rights reserved.</p>
+        <p>&copy; 2024 Abhishek Rawat. All rights reserved.</p>
     </footer>
 
     <script>
         // Intersection Observer for reveal animations
         const revealElements = document.querySelectorAll('.reveal');
-        const skillLevels = document.querySelectorAll('.skill-level');
-
+        
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    
-                    // Animate skill bars when the skills section is visible
-                    if (entry.target.id === 'skills') {
-                        skillLevels.forEach(skill => {
-                            skill.style.width = skill.parentElement.parentElement.querySelector('p').nextElementSibling.querySelector('.skill-level').style.width;
-                        });
-                    }
                 }
             });
         }, { threshold: 0.1 });
@@ -389,25 +383,6 @@
         revealElements.forEach(el => {
             revealObserver.observe(el);
         });
-
-        // Separate observer for skill bars to trigger animation correctly
-        const skillsSection = document.getElementById('skills');
-        const skillObserver = new IntersectionObserver((entries) => {
-             if (entries[0].isIntersecting) {
-                skillLevels.forEach(skill => {
-                    const level = skill.style.width; // Store the target width from the style attribute
-                    // We need to trigger the reflow to restart the animation if it was already set
-                    requestAnimationFrame(() => {
-                        skill.style.width = level;
-                    });
-                });
-             }
-        }, { threshold: 0.5 });
-        
-        if (skillsSection) {
-            skillObserver.observe(skillsSection);
-        }
-
     </script>
 </body>
-</html>
+</html>```
